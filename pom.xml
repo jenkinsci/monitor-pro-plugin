@@ -11,7 +11,7 @@
   
   <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>monitor-pro</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
+  <version>1.0.6-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
   <properties>
@@ -49,11 +49,6 @@
       <id>mmariscalg</id>
       <name>Mario Mariscal</name>
       <email>mario10_4_84@hotmail.com</email>
-    </developer>
-    <developer>
-       <id>frdiaz</id>
-       <name>Francisco R.</name>
-       <email>frdbayon@gmail.com</email>
     </developer>
   </developers>
   
