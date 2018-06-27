@@ -20,12 +20,12 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(true);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, ".job {\r\n  margin: 10px 10px 10px 10px;\r\n}\r\n", "", {"version":3,"sources":["D:/U/jenkins-test-failure-magnifier/src/app/D:/U/jenkins-test-failure-magnifier/app.component.css"],"names":[],"mappings":"AAAA;EACE,4BAA4B;CAC7B","file":"app.component.css","sourcesContent":[".job {\r\n  margin: 10px 10px 10px 10px;\r\n}\r\n"],"sourceRoot":""}]);
+exports.push([module.i, ".job {\r\n  margin: 10px 10px 10px 10px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -181,6 +181,12 @@ var ConfigPropService = (function () {
     ConfigPropService.prototype.setBranches = function (branches) {
         this.branches = branches;
     };
+    ConfigPropService.prototype.getEmail = function () {
+        return this.email;
+    };
+    ConfigPropService.prototype.setEmail = function (email) {
+        this.email = email;
+    };
     return ConfigPropService;
 }());
 ConfigPropService = __decorate([
@@ -214,6 +220,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 /**
  * Created by frdiaz on 07/01/2017.
+ * Modified by mmariscalg 27/06/2018
  */
 var ConfigService = (function () {
     function ConfigService(http) {
@@ -233,7 +240,7 @@ var ConfigService = (function () {
                 .catch(function (error) {
                 console.log('Deployed as plugin.');
                 _this._configModel = { 'user': '', 'pass': '',
-                    'jenkinsUrl': 'http://localhost:8080/jenkins/', 'jenkinsPlugin': true };
+                    'jenkinsUrl': 'http://localhost:8080/jenkins/', 'jenkinsPlugin': true, 'emailList': '' };
                 resolve();
             })
                 .subscribe(function (data) {
@@ -268,6 +275,12 @@ var ConfigService = (function () {
         enumerable: true,
         configurable: true
     });
+    ConfigService.prototype.getEmailList = function () {
+        return this._configModel.emailList;
+    };
+    ConfigService.prototype.setEmailList = function (emails) {
+        this._configModel.emailList = emails;
+    };
     return ConfigService;
 }());
 ConfigService = __decorate([
@@ -309,7 +322,7 @@ function configServiceFactory(configurationService) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__configPropService__ = __webpack_require__("../../../../../src/app/commons/configPropService.ts");
 /**
  * Created by frdiaz on 02/12/2016.
- * Modified by mmariscalg on 27/02/2018.
+ * Modified by mmariscalg on 22/06/2018.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -319,6 +332,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
 };
 
 
@@ -336,7 +384,7 @@ var JenkinsService = JenkinsService_1 = (function () {
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({});
         this.jobsGroupsFinded = {};
         this.jobsGroupsNamesList = [];
-        this.jobsGroupsParam = new Map();
+        this.jobsGroupsParam = {};
         this.groups = [];
         this.controlBranch = new Map();
     }
@@ -369,83 +417,111 @@ var JenkinsService = JenkinsService_1 = (function () {
             .map(function (response) { return response.json(); })
             .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error.json().error || 'Server error'); });
     };
+    JenkinsService.prototype.reset = function () {
+        this.jobsGroupsFinded = {};
+        this.jobsGroupsNamesList = [];
+        this.groups = [];
+        this.jobsGroupsParam = {};
+    };
     /**
      * Starts retrieving and formatting process of the Jobs State Data.
      * @param urlFolderOfJobs
      * @returns {Observable<R>}
      */
     JenkinsService.prototype.getJobsStatus = function (urlFolderOfJobs) {
-        var _this = this;
-        this.jobsGroupsFinded = {};
-        this.jobsGroupsNamesList = [];
-        this.groups = [];
-        this.jobsGroupsParam = new Map();
-        if (urlFolderOfJobs === undefined) {
-            this.invokedUrl = this.configService.getJenkinsUrl() + JenkinsService_1.endJobsDataUrl;
-        }
-        else {
-            this.invokedUrl = urlFolderOfJobs + JenkinsService_1.endJobsDataUrl;
-        }
-        return this.http.post(this.invokedUrl, undefined, this.resquestOptions)
-            .map(function (response) { return _this.createJobData(response.json().jobs); })
-            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error.json().error || 'Server error'); });
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (urlFolderOfJobs === undefined) {
+                            this.invokedUrl = this.configService.getJenkinsUrl() + JenkinsService_1.endJobsDataUrl;
+                        }
+                        else {
+                            this.invokedUrl = urlFolderOfJobs + JenkinsService_1.endJobsDataUrl;
+                        }
+                        return [4 /*yield*/, this.http.get(this.invokedUrl, this.resquestOptions)
+                                .map(function (response) {
+                                return _this.createJobData(response.json().jobs);
+                            })
+                                .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error.json().error || 'Server error'); })
+                                .toPromise()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
     /**
      * Converts backend Jobs Objects in to frontend Jobs Objects
      * @param jobs
      */
     JenkinsService.prototype.createJobData = function (jobs) {
-        var jobModelAux = [];
-        for (var _i = 0, jobs_1 = jobs; _i < jobs_1.length; _i++) {
-            var job = jobs_1[_i];
-            if (job !== null) {
-                if (job.buildable === undefined) {
-                    this.getJobsStatus(job.url);
-                }
-                else {
-                    if (job.lastBuild !== null) {
-                        this.addJobToAGroup(job);
-                    }
-                }
-            }
-        }
-        for (var _a = 0, _b = this.jobsGroupsNamesList; _a < _b.length; _a++) {
-            var group_1 = _b[_a];
-            if (group_1 === 'reminder' || this.jobsGroupsFinded[group_1].length === 0) {
-                for (var _c = 0, _d = this.jobsGroupsFinded[group_1]; _c < _d.length; _c++) {
-                    var job = _d[_c];
-                    var jobModel = new __WEBPACK_IMPORTED_MODULE_5__job_simpleJob_model__["a" /* SimpleJob */](job);
-                    jobModel.setStatusClass();
-                    jobModelAux.push((jobModel));
-                }
-            }
-            else {
-                var principalJobModel = new __WEBPACK_IMPORTED_MODULE_4__job_jobsGroup_model__["a" /* JobsGroup */]();
-                principalJobModel.name = group_1;
-                for (var _e = 0, _f = this.jobsGroupsFinded[group_1]; _e < _f.length; _e++) {
-                    var job = _f[_e];
-                    var jobModel = new __WEBPACK_IMPORTED_MODULE_5__job_simpleJob_model__["a" /* SimpleJob */](job);
-                    jobModel.setStatusClass();
-                    if (this.controlBranch.get(jobModel.name) !== undefined) {
-                        jobModel.master = this.controlBranch.get(jobModel.name);
-                        if (this.configPropService.getBranches() && jobModel.master !== '') {
-                            jobModel.result = 'SUCCESS_';
+        return __awaiter(this, void 0, void 0, function () {
+            var jobModelAux, _i, jobs_1, job, _a, _b, group_1, _c, _d, job, jobModel, principalJobModel, _e, _f, job, jobModel;
+            return __generator(this, function (_g) {
+                switch (_g.label) {
+                    case 0:
+                        jobModelAux = [];
+                        _i = 0, jobs_1 = jobs;
+                        _g.label = 1;
+                    case 1:
+                        if (!(_i < jobs_1.length)) return [3 /*break*/, 5];
+                        job = jobs_1[_i];
+                        if (!(job !== null)) return [3 /*break*/, 4];
+                        if (!(job.buildable === undefined)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.getJobsStatus(job.url)];
+                    case 2:
+                        _g.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        if (job.lastBuild !== null) {
+                            this.addJobToAGroup(job);
                         }
-                    }
-                    if (jobModel.result !== 'SUCCESS') {
-                        if (this.jobsGroupsParam.has(jobModel.name)) {
-                            jobModel.param = this.jobsGroupsParam.get(jobModel.name);
+                        _g.label = 4;
+                    case 4:
+                        _i++;
+                        return [3 /*break*/, 1];
+                    case 5:
+                        for (_a = 0, _b = this.jobsGroupsNamesList; _a < _b.length; _a++) {
+                            group_1 = _b[_a];
+                            if (group_1 === 'reminder' || this.jobsGroupsFinded[group_1].length === 0) {
+                                for (_c = 0, _d = this.jobsGroupsFinded[group_1]; _c < _d.length; _c++) {
+                                    job = _d[_c];
+                                    jobModel = new __WEBPACK_IMPORTED_MODULE_5__job_simpleJob_model__["a" /* SimpleJob */](job);
+                                    jobModel.setStatusClass();
+                                    jobModelAux.push((jobModel));
+                                }
+                            }
+                            else {
+                                principalJobModel = new __WEBPACK_IMPORTED_MODULE_4__job_jobsGroup_model__["a" /* JobsGroup */]();
+                                principalJobModel.name = group_1;
+                                for (_e = 0, _f = this.jobsGroupsFinded[group_1]; _e < _f.length; _e++) {
+                                    job = _f[_e];
+                                    jobModel = new __WEBPACK_IMPORTED_MODULE_5__job_simpleJob_model__["a" /* SimpleJob */](job);
+                                    jobModel.setStatusClass();
+                                    if (this.controlBranch.get(jobModel.name) !== undefined) {
+                                        jobModel.master = this.controlBranch.get(jobModel.name);
+                                        if (this.configPropService.getBranches() && jobModel.master !== '') {
+                                            jobModel.result = 'SUCCESS_';
+                                        }
+                                    }
+                                    if (jobModel.result !== 'SUCCESS') {
+                                        if (this.jobsGroupsParam[jobModel.name] !== undefined) {
+                                            jobModel.param = this.jobsGroupsParam[jobModel.name];
+                                        }
+                                        principalJobModel.result = jobModel.result;
+                                        console.log('GROUP JOB Result: ' + principalJobModel.name + ' - ' + principalJobModel.result);
+                                    }
+                                    principalJobModel.jobsList.push(jobModel);
+                                }
+                                principalJobModel.setStatusClass();
+                                jobModelAux.push((principalJobModel));
+                            }
                         }
-                        principalJobModel.result = jobModel.result;
-                        console.log('GROUP JOB Result: ' + principalJobModel.name + ' - ' + principalJobModel.result);
-                    }
-                    principalJobModel.jobsList.push(jobModel);
+                        return [2 /*return*/, jobModelAux];
                 }
-                principalJobModel.setStatusClass();
-                jobModelAux.push((principalJobModel));
-            }
-        }
-        return jobModelAux;
+            });
+        });
     };
     /**
      * Adds the job to the correct group, according to a job's parameter.
@@ -500,8 +576,8 @@ var JenkinsService = JenkinsService_1 = (function () {
                             this.jobsGroupsFinded[auxName] = [job];
                         }
                         var auxParamsValues = this.createPrintableParams(auxParams);
-                        if (!this.jobsGroupsParam.has(job.name)) {
-                            this.jobsGroupsParam.set(job.name, auxParamsValues);
+                        if (this.jobsGroupsParam[job.name] === undefined) {
+                            this.jobsGroupsParam[job.name] = auxParamsValues;
                         }
                     }
                 }
@@ -548,8 +624,20 @@ var JenkinsService = JenkinsService_1 = (function () {
         }
         return chain;
     };
+    JenkinsService.prototype.sendEmailIfFail = function (subject, content, job) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({ headers: headers });
+        return this.http.post(job + 'send_mail/configSubmit', 
+        // tslint:disable-next-line:max-line-length
+        'json= {"from": "JENKINS-TEST-FAILURE-MAGNIFIER", "to": "' + this.configService.getEmailList() + '", "addDev": true, "subject": "' + subject + '", "content": "' + content + '", "chooseTemplate": ""}', options)
+            .map(function (response) { return response; })
+            .catch(function (error) { return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].throw(error.json().error || 'Server error'); });
+    };
     JenkinsService.prototype.submitForm = function () {
         console.log('Sends form to the Server');
+    };
+    JenkinsService.prototype.getJobsGroupsParam = function () {
+        return this.jobsGroupsParam;
     };
     return JenkinsService;
 }());
@@ -802,7 +890,7 @@ var SimpleJob = (function (_super) {
 /***/ "../../../../../src/app/jobs-basic-view-menu-config/jobsBasicViewMenuConfig.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <nav id=\"menuLateral\">\r\n    <section [class.showSettings]=\"toggleSettings\">\r\n      <input id=\"settings-toggle\" type=\"checkbox\" class=\"settings\" [(ngModel)]=\"toggleSettings\"/>\r\n      <label for=\"settings-toggle\" title=\"Configure Build Monitor Settings\">Settings</label>\r\n\r\n      <ul>\r\n        <li class=\"settings-option\">\r\n          <label for=\"combViewSelction\">Views:</label>\r\n          <select [(ngModel)]=\"viewConfig.jobsViewSelected\" class=\"form-control\" id=\"combViewSelction\" name=\"combViewSelction\" (ngModelChange)=\"loadViewSelected()\" >\r\n            <option *ngFor=\"let view of viewConfig.views\" [selected]=\"view.name == viewConfig.jobsViewSelected.name\" [disabled]=\"view.name == viewConfig.jobsViewSelected.name\" [ngValue]=\"view\">{{view.name}}</option>\r\n          </select>\r\n        </li>\r\n        <li class=\"settings-option\">\r\n          <label for=\"combNumColumns\">Maximun number of columns:</label>\r\n          <select [(ngModel)]=\"viewConfig.numColSelected\" class=\"form-control\" id=\"combNumColumns\" name=\"combNumColumns\" (change)=\"setColumnsLayout()\" >\r\n            <option *ngFor=\"let numColumn of viewConfig.combNumColumns\" [value]=\"numColumn\">{{numColumn}}</option>\r\n          </select>\r\n        </li>\r\n      </ul>\r\n      \r\n      \r\n        <form *ngIf=\"toggleSettings\">\r\n        <fieldset>\r\n          <legend>Jenkins Configuration:</legend>\r\n        <ul>\r\n        <li class=\"settings-option\">          \r\n            <div>\r\n              <label for=\"inputPollInterval\">Refresh interval (in seconds):</label>\r\n              <input type=\"number\" [(ngModel)]=\"viewConfig.pollingInterval\" id=\"inputPollInterval\" name=\"inputPollInterval\" min=\"1\" max=\"60\">\r\n            </div>\r\n        </li>\r\n         <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsUser\">Jenkins User:</label>\r\n              <input type=\"text\" name=\"jenkinsUser\" id=\"jenkinsUser\" [(ngModel)]=\"viewConfig.configuration.user\">            \r\n            </div>\r\n         </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsPassword\">Jenkins Password:</label>\r\n              <input type=\"password\" name=\"jenkinsPassword\" id=\"jenkinsPassword\" [(ngModel)]=\"viewConfig.configuration.pass\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsUrl\">Jenkins Url:</label>\r\n              <input type=\"text\" name=\"jenkinsUrl\" id=\"jenkinsUrl\" [(ngModel)]=\"viewConfig.configuration.jenkinsUrl\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsHideOK\">Hide success builds:</label>\r\n            <div>\r\n            </div>\r\n              <input type=\"checkbox\" name=\"jenkinsHideOK\" id=\"jenkinsHideOK\" [(ngModel)]=\"viewConfig.hideOK\" (change)=\"hideBuilds()\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsMaster\">Hide errors for no Master branches:</label>\r\n            <div>\r\n            </div>\r\n              <input type=\"checkbox\" name=\"jenkinsMaster\" id=\"jenkinsMaster\" [(ngModel)]=\"viewConfig.branches\" (change)=\"allNoMasterOK()\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <input type=\"submit\" (click)=\"onSubmit()\" value=\"Send\">\r\n            </div>          \r\n          </li>\r\n        </ul>\r\n        </fieldset>\r\n        </form>\r\n\r\n    </section>\r\n  </nav>\r\n\r\n"
+module.exports = "  <nav id=\"menuLateral\">\r\n    <section [class.showSettings]=\"toggleSettings\">\r\n      <input id=\"settings-toggle\" type=\"checkbox\" class=\"settings\" [(ngModel)]=\"toggleSettings\"/>\r\n      <label for=\"settings-toggle\" title=\"Configure Build Monitor Settings\">Settings</label>\r\n\r\n      <ul>\r\n        <li class=\"settings-option\">\r\n          <label for=\"combViewSelction\">Views:</label>\r\n          <select [(ngModel)]=\"viewConfig.jobsViewSelected\" class=\"form-control\" id=\"combViewSelction\" name=\"combViewSelction\" (ngModelChange)=\"loadViewSelected()\" >\r\n            <option *ngFor=\"let view of viewConfig.views\" [selected]=\"view.name == viewConfig.jobsViewSelected.name\" [disabled]=\"view.name == viewConfig.jobsViewSelected.name\" [ngValue]=\"view\">{{view.name}}</option>\r\n          </select>\r\n        </li>\r\n        <li class=\"settings-option\">\r\n          <label for=\"combNumColumns\">Maximun number of columns:</label>\r\n          <select [(ngModel)]=\"viewConfig.numColSelected\" class=\"form-control\" id=\"combNumColumns\" name=\"combNumColumns\" (change)=\"setColumnsLayout()\" >\r\n            <option *ngFor=\"let numColumn of viewConfig.combNumColumns\" [value]=\"numColumn\">{{numColumn}}</option>\r\n          </select>\r\n        </li>\r\n      </ul>\r\n      \r\n      \r\n        <form *ngIf=\"toggleSettings\">\r\n        <fieldset>\r\n          <legend>Jenkins Configuration:</legend>\r\n        <ul>\r\n        <li class=\"settings-option\">          \r\n            <div>\r\n              <label for=\"inputPollInterval\">Refresh interval (in seconds):</label>\r\n              <input type=\"number\" [(ngModel)]=\"viewConfig.pollingInterval\" id=\"inputPollInterval\" name=\"inputPollInterval\" min=\"1\" max=\"60\">\r\n            </div>\r\n        </li>\r\n         <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsUser\">Jenkins User:</label>\r\n              <input type=\"text\" name=\"jenkinsUser\" id=\"jenkinsUser\" [(ngModel)]=\"viewConfig.configuration.user\">            \r\n            </div>\r\n         </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsPassword\">Jenkins Password:</label>\r\n              <input type=\"password\" name=\"jenkinsPassword\" id=\"jenkinsPassword\" [(ngModel)]=\"viewConfig.configuration.pass\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsUrl\">Jenkins Url:</label>\r\n              <input type=\"text\" name=\"jenkinsUrl\" id=\"jenkinsUrl\" [(ngModel)]=\"viewConfig.configuration.jenkinsUrl\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsHideOK\">Hide success builds:</label>\r\n            <div>\r\n            </div>\r\n              <input type=\"checkbox\" name=\"jenkinsHideOK\" id=\"jenkinsHideOK\" [(ngModel)]=\"viewConfig.hideOK\" (change)=\"hideBuilds()\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsMaster\">Hide errors NO Master branches:</label>\r\n            <div>\r\n            </div>\r\n              <input type=\"checkbox\" name=\"jenkinsMaster\" id=\"jenkinsMaster\" [(ngModel)]=\"viewConfig.branches\" (change)=\"allNoMasterOK()\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"jenkinsEmail\">Send info email if group fails:</label>\r\n            <div>\r\n            </div>\r\n              <input type=\"checkbox\" name=\"jenkinsEmail\" id=\"jenkinsEmail\" [(ngModel)]=\"viewConfig.email\" (change)=\"sendEmail()\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <label for=\"emailList\">Email list:</label>\r\n              <input type=\"text\" name=\"emailList\" id=\"emailList\" [(ngModel)]=\"viewConfig.configuration.emailList\">\r\n            </div>\r\n          </li>\r\n          <li class=\"settings-option\">\r\n            <div>\r\n              <input type=\"submit\" (click)=\"onSubmit()\" value=\"Send\">\r\n            </div>          \r\n          </li>\r\n        </ul>\r\n        </fieldset>\r\n        </form>\r\n\r\n    </section>\r\n  </nav>\r\n\r\n"
 
 /***/ }),
 
@@ -901,6 +989,9 @@ var JobsBasicViewMenConfComponent = (function () {
         this._propService.setBranches(this.viewConfig.branches);
         this.loadViews();
     };
+    JobsBasicViewMenConfComponent.prototype.sendEmail = function () {
+        this._propService.setEmail(this.viewConfig.email);
+    };
     return JobsBasicViewMenConfComponent;
 }());
 __decorate([
@@ -953,7 +1044,9 @@ var JobsBasicViewMenuConfig = (function () {
         this.pollingInterval = 5;
         this.hideOK = false;
         this.branches = false;
-        this.configuration = { 'user': 'monitor-pro', 'pass': '', 'jenkinsUrl': 'http://localhost:8080/jenkins/', 'jenkinsPlugin': false };
+        this.email = false;
+        this.configuration = { 'user': 'monitor-pro', 'pass': '', 'jenkinsUrl': 'http://localhost:8080/jenkins/',
+            'jenkinsPlugin': false, 'emailList': '' };
     }
     return JobsBasicViewMenuConfig;
 }());
@@ -979,8 +1072,11 @@ module.exports = "<h2>View: {{jobsViewSelected.name}}</h2>\r\n<h2>Group filter \
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__commons_jenkinsService_service__ = __webpack_require__("../../../../../src/app/commons/jenkinsService.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jobsBasicView_model__ = __webpack_require__("../../../../../src/app/jobs-basic-view/jobsBasicView.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__commons_configPropService__ = __webpack_require__("../../../../../src/app/commons/configPropService.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__job_jobsGroup_model__ = __webpack_require__("../../../../../src/app/job/jobsGroup.model.ts");
 /**
  * Created by frdiaz on 02/12/2016.
+ * Modified by mmariscalg on 22/06/2018.
  */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -991,6 +1087,43 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
 
 
 
@@ -998,11 +1131,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var JobsBasicViewComponent = (function () {
-    function JobsBasicViewComponent(jenkinsService) {
+    function JobsBasicViewComponent(jenkinsService, _propService) {
         this.jenkinsService = jenkinsService;
+        this._propService = _propService;
         this.jobsModel = [];
+        this.jobsModelEmail = [];
+        this.jobsModelEmailStarted = false;
         this.filteredJobsModel = [];
         this._listFilter = '';
+        this.params = {};
         this.jobsViewSelected = new __WEBPACK_IMPORTED_MODULE_4__jobsBasicView_model__["a" /* JobsBasicViewModel */](undefined, 'No view selected jet.');
     }
     Object.defineProperty(JobsBasicViewComponent.prototype, "listFilter", {
@@ -1035,16 +1172,31 @@ var JobsBasicViewComponent = (function () {
             this.subscription.unsubscribe();
         }
     };
+    JobsBasicViewComponent.prototype.updateJobs = function (url) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.jenkinsService.getJobsStatus(url)];
+                    case 1:
+                        _a.jobsModel = _b.sent();
+                        this.filteredJobsModel = this.listFilter ? this.performFilter(this.listFilter) : this.jobsModel;
+                        this.params = this.jenkinsService.getJobsGroupsParam();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     /**
      * Starts load of jobs status
      * @param url
      */
     JobsBasicViewComponent.prototype.initLoadJobsStatus = function (url) {
         var _this = this;
-        this.jenkinsService.getJobsStatus(url).subscribe(function (jobsModelAux) {
-            _this.jobsModel = jobsModelAux,
-                _this.filteredJobsModel = _this.listFilter ? _this.performFilter(_this.listFilter) : _this.jobsModel;
-        }, function (error) { return console.log('Error retriving data'); });
+        this.jenkinsService.reset();
+        this.updateJobs(url);
         /* Starts the polling configuration */
         if (this.subscription !== undefined) {
             this.subscription.unsubscribe();
@@ -1052,10 +1204,59 @@ var JobsBasicViewComponent = (function () {
         this.timer = __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */].interval(this.viewConfig.pollingIntervalInMilSecond);
         this.subscription = this.timer
             .subscribe(function () {
-            _this.jenkinsService.getJobsStatus(url).subscribe(function (jobsModelAux) {
-                _this.jobsModel = jobsModelAux,
-                    _this.filteredJobsModel = _this.listFilter ? _this.performFilter(_this.listFilter) : _this.jobsModel;
-            }, function (error) { return console.log('Error retriving data'); });
+            _this.jenkinsService.reset();
+            _this.updateJobs(url);
+            for (var _i = 0, _a = _this.jobsModel; _i < _a.length; _i++) {
+                var entry = _a[_i];
+                if (entry instanceof __WEBPACK_IMPORTED_MODULE_6__job_jobsGroup_model__["a" /* JobsGroup */]) {
+                    var entryGroup = entry;
+                    for (var _b = 0, _c = entryGroup.jobsList; _b < _c.length; _b++) {
+                        var subentry = _c[_b];
+                        if (subentry.statusClass === 'failing') {
+                            if (_this.jobsModelEmail.indexOf(subentry.name) === -1) {
+                                if (_this._propService.getEmail() && _this.jobsModelEmailStarted) {
+                                    _this.jenkinsService.sendEmailIfFail('New FAILURE: '
+                                        + subentry.name, 'JOB  ' + subentry.name + ' crashed'
+                                        + ((_this.params[subentry.name]) === undefined ? '' : ' with next PARAMS: ' + (_this.params[subentry.name]))
+                                        + '. Please, for further details visit: ' + subentry.urlJob, subentry.urlJob)
+                                        .subscribe(function (response) { return response; }, function (error) { return console.log(error); });
+                                }
+                                console.log('New FAILURE: ' + subentry.name);
+                                _this.jobsModelEmail.push(subentry.name);
+                            }
+                        }
+                        else {
+                            if (_this.jobsModelEmail.indexOf(subentry.name) !== -1) {
+                                console.log('New Success: ' + subentry.name);
+                                _this.jobsModelEmail.splice(_this.jobsModelEmail.indexOf(subentry.name), 1);
+                            }
+                        }
+                    }
+                }
+                else {
+                    var simpleEntry = entry;
+                    if (simpleEntry.statusClass === 'failing') {
+                        if (_this.jobsModelEmail.indexOf(simpleEntry.name) === -1) {
+                            if (_this._propService.getEmail() && _this.jobsModelEmailStarted) {
+                                _this.jenkinsService.sendEmailIfFail('New FAILURE: '
+                                    + simpleEntry.name, 'JOB  ' + simpleEntry.name + ' crashed'
+                                    + ((_this.params[simpleEntry.name]) === undefined ? '' : ' with next PARAMS: ' + (_this.params[simpleEntry.name]))
+                                    + '. Please, for further details visit: ' + simpleEntry.urlJob, simpleEntry.urlJob)
+                                    .subscribe(function (response) { return response; }, function (error) { return console.log(error); });
+                            }
+                            console.log('New FAILURE: ' + simpleEntry.name);
+                            _this.jobsModelEmail.push(simpleEntry.name);
+                        }
+                    }
+                    else {
+                        if (_this.jobsModelEmail.indexOf(simpleEntry.name) !== -1) {
+                            console.log('New Success: ' + simpleEntry.name);
+                            _this.jobsModelEmail.splice(_this.jobsModelEmail.indexOf(simpleEntry.name), 1);
+                        }
+                    }
+                }
+            }
+            _this.jobsModelEmailStarted = true;
         });
         /* Ends the polling configuration */
     };
@@ -1099,10 +1300,10 @@ JobsBasicViewComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/jobs-basic-view/jobsBasicView.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__commons_jenkinsService_service__["a" /* JenkinsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__commons_jenkinsService_service__["a" /* JenkinsService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__commons_jenkinsService_service__["a" /* JenkinsService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__commons_jenkinsService_service__["a" /* JenkinsService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__commons_configPropService__["a" /* ConfigPropService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__commons_configPropService__["a" /* ConfigPropService */]) === "function" && _b || Object])
 ], JobsBasicViewComponent);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=jobsBasicView.component.js.map
 
 /***/ }),
