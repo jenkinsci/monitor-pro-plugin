@@ -20,12 +20,12 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /***/ "../../../../../src/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(true);
 // imports
 
 
 // module
-exports.push([module.i, ".job {\r\n  margin: 10px 10px 10px 10px;\r\n}\r\n", ""]);
+exports.push([module.i, ".job {\r\n  margin: 10px 10px 10px 10px;\r\n}\r\n", "", {"version":3,"sources":["D:/U/jenkins-test-failure-magnifier/src/app/D:/U/jenkins-test-failure-magnifier/app.component.css"],"names":[],"mappings":"AAAA;EACE,4BAA4B;CAC7B","file":"app.component.css","sourcesContent":[".job {\r\n  margin: 10px 10px 10px 10px;\r\n}\r\n"],"sourceRoot":""}]);
 
 // exports
 
